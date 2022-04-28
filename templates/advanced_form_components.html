@@ -1,0 +1,105 @@
+
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+
+        <h3><i class="fa fa-angle-right"></i> Upload check image </h3>
+
+
+        <!--ADVANCED FILE INPUT-->
+        <div class="row mt">
+          <div class="col-lg-12">
+            <div class="form-panel">
+
+                  <form method="POST"  enctype="multipart/form-data" class="form-horizontal style-form" onSubmit="document.getElementById('sub').disabled=true;">
+                      {% csrf_token %}
+                    <div class="form-group first">
+
+                      <div class="col-md-9">
+                        <div class="fileupload fileupload-new" data-provides="fileupload">
+                          <div class="fileupload-new thumbnail" style="width:900px;height:400px">
+
+
+                            <img id="preview" style="width:890px;height:390px">
+                          </div>
+                          <div>
+
+                              <span class="btn btn-theme02 btn-file">
+                                <span class="fileupload-new"><i class="fa"></i> Select image: </span>
+                                  <div class="btn-group">
+                                      <input type="file" name="uploaded_check" id="uploaded_check" accept="image/*" class="fileupload" accept=".jpeg, .jpg, .png" onchange="previewImage();">
+                                  </div>
+                                <span class="fileupload-new"><i class="fa"></i> Language: </span>
+                                  <div class="btn-group">
+
+                                      <div class="custom-select" style="width:80px ;display: inline-block;">
+                                          <select name="check_language" id="check_language" style="display: inline-block; color: #1a1a1a;text-align: left" >
+                                            <option value="English">English</option>
+                                            <option value="Arabic">Arabic</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <span class="fileupload-new"><i class="fa"></i> Bank: </span>
+                                  <div class="btn-group">
+                                    <div class="custom-select" style="width:90px;">
+                                      <select name="check_bank" id="check_bank" style="display: inline-block;color: #1a1a1a;text-align: left">
+                                        <option value="AXIS">AXIS</option>
+                                        <option value="CANARA">CANARA</option>
+                                        <option value="Syndicate">Syndicate</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <span class="fileupload-new"><i class="fa"></i> </span>
+                                  <div class="btn-group">
+                                    <div class="custom-select" style="width:90px;">
+                                      <input href="/extractData" type="submit" id="sub" value="EXTRACT" class="btn btn-theme04 fileupload-exists" data-dismiss="fileupload" >
+                                    </div>
+                                  </div>
+
+
+                            </span>
+                            <!--
+
+                            -->
+                          </div>
+                        </div>
+
+
+                      </div>
+                    </div>
+
+                  </form>
+
+            </div>
+            <!-- /form-panel -->
+          </div>
+          <!-- /col-lg-12 -->
+        </div>
+        <!-- row -->
+<script>
+	function previewImage() {
+		var file = document.getElementById("uploaded_check").files;
+		if (file.length > 0) {
+			var fileReader = new FileReader();
+
+			fileReader.onload = function (event) {
+				document.getElementById("preview").setAttribute("src", event.target.result);
+			};
+
+			fileReader.readAsDataURL(file[0]);
+		}
+	}
+
+
+
+
+
+
+</script>
+
+
+
+{% endblock %}

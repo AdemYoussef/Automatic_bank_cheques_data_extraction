@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+    <h3><i class="fa fa-angle-right"></i> Extraction Overview </h3>
+    <div class="showback">
+        <div class="form-group has-error">
+            <p><i class="fa fa-dot-circle-o"></i> Check Bank : <b>{{request.session.bank_name}}</b></p>
+        </div>
+        <div class="form-group has-error">
+            <p><i class="fa fa-dot-circle-o"></i> Check language : <b>{{request.session.bank_language}}</b></p>
+
+        </div>
+    </div>
+    <div class="showback">
+    <table>
+        <tr>
+            <td style="padding:0 15px 0 100px;">
+                <div class="form-group has-error">
+                    <p><b><h4><i class="fa fa-angle-right"></i> Words image extraction : </h4></b><br><img id="words_image" src="/static/img/image_preprocessing/words_image.png" alt="words image here" style="width:400px;height:150px"></p>
+                </div>
+            </td>
+            <td style="padding:0 15px 0 100px;">
+                <div class="form-group has-error">
+                    <p><b><h4><i class="fa fa-angle-right"></i> Date image extraction : </h4></b><br><img id="date_image" src="/static/img/image_preprocessing/date_image.png" alt="date image here" style="width:400px;height:150px"></p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding:0 15px 0 100px;">
+                <div class="form-group has-error">
+                    <p><b><h4><i class="fa fa-angle-right"></i> Amount image extraction : </h4></b><br><img id="amount_image" src="/static/img/image_preprocessing/amount_image.png" alt="amount digit image here" style="width:400px;height:150px"></p>
+                </div>
+                </td>
+                <td style="padding:0 15px 0 100px;">
+                <div class="form-group has-error">
+                    <p><b><h4><i class="fa fa-angle-right"></i> signature image extraction : </h4></b><br><img id="signature_image" src="/static/img/image_preprocessing/signature_image.png" alt="signature image here" style="width:400px;height:150px"></p>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    </div>
+        <!-- BASIC FORM VALIDATION -->
+        <div class="row mt">
+          <div class="col-lg-12">
+            <h4><i class="fa fa-angle-right"></i> Options </h4>
+
+            <div class="form-panel">
+              <form method="GET"  enctype="multipart/form-data" role="form" class="form-horizontal style-form">
+
+
+              <div class="showback">
+                  <table>
+                        <tr>
+                            <td style="padding:0 15px 0 100px;">
+
+                                 <p><label for="name"><b>Client Name in Words:</b></label></p>
+
+                                  <input type="text" value="{{request.session.name_str}}" placeholder="" id="Client Name and Amount in Words" name="Client Name and Amount in Words" required
+                                          size="50">
+                            </td>
+
+
+                            <td style="padding:0 15px 0 100px;">
+                                 <p><label for="name"><b>Date:</b></label></p>
+
+                              <input type="text" value="{{ request.session.predicted_date }}" placeholder="" id="Date" name="Date" required minlength="1" maxlength="50" size="50">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0 15px 0 100px;">
+                                <br>
+                                <p><label for="name"><B>Amount in Digits:</b></label></p>
+
+                                  <input type="text" value="{{request.session.predicted_amount}}" placeholder="" id="Digits Amount" name="Digits Amount" required
+                                         minlength="1" maxlength="50" size="50">
+                                    <p name="Digits Amount2">{{Digits_Amount}}</p>
+
+                            </td>
+                            <td style="padding:0 15px 0 100px;">
+                                <br>
+                                  <p><label for="name"><b>Signature Verification Status:</b></label></p>
+                                  <input type="text" value="{{request.session.predicted_sig}}" placeholder="" id="Date" name="Date" required minlength="1" maxlength="50" size="50">
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="padding:0 15px 0 100px;">
+
+                                 <p><label for="amount"><b>Amount in Words:</b></label></p>
+
+                                  <input type="text" value="{{request.session.amount_str}}" placeholder="" id="Client Name and Amount in Words" name="Client Name and Amount in Words" required
+                                          size="50">
+                            </td>
+                        </tr>
+
+                  </table>
+
+                <div class="bottom-menu">
+                  <ul class="nav pull-right top-menu">
+                      <input href="/index" type="submit" value="SUBMIT" class="btn btn-theme04 fileupload-exists" data-dismiss="fileupload">
+
+                  </ul>
+                </div>
+              </div>
+
+
+
+
+
+              </form>
+            </div>
+          </div>
+            <!-- /form-panel -->
+        </div>
+
+{% endblock %}
